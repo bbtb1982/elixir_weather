@@ -15,11 +15,11 @@ defmodule Weather.CLI do
   end
 
   def parse_args(argv) do
-    parse = OptionParser.parse(argv,  switchs: [help: :boolean, list: :boolean],
+    parse = OptionParser.parse(argv,  strict: [help: :boolean, list: :boolean],
                                       aliases: [h: :help, l: :list])
     case parse do
-      {[help: true], _, _} -> :help
       {[list: true], _, _} -> :list
+      {[help: true], _, _} -> :help
       {_, [location], _} -> { location }
       _ -> :help 
     end
