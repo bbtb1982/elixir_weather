@@ -28,3 +28,7 @@ use Mix.Config
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env}.exs"
+#
+
+config :weather, weather_url: "http://www.ncdc.noaa.gov/cdo-web/api/v2/stations/"
+config :weather, ncdc_token: "hIwnmTpkUTaeBLFSqbehfJWOdCmxvJOI"
