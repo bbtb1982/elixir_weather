@@ -1,22 +1,16 @@
 defmodule Weather.JSONParser do
   require Logger
   import Structs.StationDatum
-
+  
   @derive [Poison.Encoder]
   
-  def parse({_, json}) do
-    Logger.info "begin parsing json"
-    Logger.debug json
-    
-    json  |> decode_json
-          |> display
+  def parse_station_list(json) do
+    Logger.info "parsing station list"
+    json = Poison.decode!(json, as: %{"results" => :results } )
+    json["results"]
   end
 
-  def decode_json(json) do
+  def parse_station_data(json) do
     Poison.decode!(json, as: %Structs.StationDatum{})
-  end
-
-  def display(datum) do
-    IO.inspect datum.id
   end
 end
